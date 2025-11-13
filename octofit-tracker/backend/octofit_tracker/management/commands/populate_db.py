@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand
+https://$CODESPACE_NAME-8000.app.github.dev/api/activities/from django.core.management.base import BaseCommand
 from django.conf import settings
 from djongo import models
 
