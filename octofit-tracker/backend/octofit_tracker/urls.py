@@ -14,9 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
+from django.http import JsonResponse
+import os
 
 
 # Prefix all API endpoints with /api/
@@ -31,4 +34,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', views.api_root, name='api-root'),
     path('api/', include(router.urls)),
+    path('codespace-url/', lambda request: JsonResponse({
+        'codespace_url': os.environ.get('CODESPACE_URL', 'Not set')
+    }), name='codespace-url'),
+    path('', lambda request: JsonResponse({'message': 'Welcome to Octofit Tracker API!'}), name='home'),
 ]
